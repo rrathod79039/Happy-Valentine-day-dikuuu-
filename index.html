@@ -17,6 +17,11 @@ body{
 .page{
     display:none;
     padding:40px 20px;
+    animation: fade 0.6s ease;
+}
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
 }
 button{
     padding:12px 20px;
@@ -55,6 +60,19 @@ img{
     border-radius:15px;
     margin-top:20px;
 }
+.scroll-box{
+    max-width:600px;
+    margin:auto;
+    max-height:60vh;
+    overflow-y:auto;
+    text-align:left;
+    background:rgba(255,255,255,0.15);
+    padding:20px;
+    border-radius:12px;
+}
+.scroll-box ul{
+    padding-left:20px;
+}
 </style>
 </head>
 
@@ -70,7 +88,7 @@ img{
 <!-- PAGE 2 -->
 <div class="page" id="page2">
     <h2>🔐 Enter Our Special Date</h2>
-    <input type="password" id="code" placeholder="U celebrate my bday">
+    <input type="password" id="code" placeholder="DDMMYYYY">
     <br>
     <button onclick="checkCode()">Unlock My Heart ❤️</button>
 </div>
@@ -86,27 +104,61 @@ img{
 
     <div class="love-text">
         <p>
-        Happy Valentine’s Day, my love. Every day with you feels like a beautiful dream come true. 
-        You are my heart, my happiness, and my forever. I’m so lucky to call you mine. 💖
+        Happy Valentine’s Day, my love. Every day with you feels like a beautiful dream come true.
+        You are my heart, my happiness, and my forever. 💖
         </p>
 
         <p>
-        On this Valentine’s Day, I just want you to know that you are the best thing that has ever happened to me. 
-        Your smile lights up my world, and your love completes my soul. 
         I promise to love you more with each passing day. 🌹
         </p>
     </div>
 
     <img src="https://images.pexels.com/photos/1028723/pexels-photo-1028723.jpeg">
+
+    <br>
+    <button onclick="nextPage(5)">Read All My Messages 💌</button>
+</div>
+
+<!-- PAGE 5 (SCROLLABLE MESSAGE LIST) -->
+<div class="page" id="page5">
+    <h1>💌 All My Love Messages For You 💌</h1>
+
+    <div class="scroll-box">
+        <ul>
+            <li>You are the best thing that ever happened to me 💖</li>
+            <li>Your smile makes my whole day brighter ☀️</li>
+            <li>I fall in love with you again every day 🌹</li>
+            <li>You are my peace and my happiness 💕</li>
+            <li>Life feels complete with you 🥰</li>
+            <li>I’m lucky to call you mine ❤️</li>
+            <li>You are my forever and always 💍</li>
+            <li>Your love is my greatest gift 🎁</li>
+            <li>You make my heart skip a beat 💓</li>
+            <li>I love everything about you 😘</li>
+            <li>You are my dream come true 🌙</li>
+            <li>Every moment with you is special ✨</li>
+            <li>You are my sunshine on cloudy days 🌤</li>
+            <li>I can’t imagine life without you 💞</li>
+            <li>I choose you. Every single time 💘</li>
+            <li>You are my today and all my tomorrows 💌</li>
+            <li>I adore you more than words can say 💗</li>
+            <li>My heart belongs to you 💝</li>
+            <li>You are my soulmate 💫</li>
+            <li>I will always stand by your side 🤍</li>
+        </ul>
+    </div>
+
+    <br>
+    <button onclick="nextPage(4)">Back To Surprise 💖</button>
 </div>
 
 <audio id="music" loop>
-    <source src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav" type="audio/wav">
+    <source src="romantic-music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
-const secret = "2011"; // CHANGE THIS TO YOUR SPECIAL DATE
+const secret = "14022026";
 
 function nextPage(pageNumber){
     document.querySelectorAll(".page").forEach(p=>p.style.display="none");
@@ -119,7 +171,7 @@ function checkCode(){
         nextPage(3);
         setTimeout(()=>{
             nextPage(4);
-            document.getElementById("music").play();
+            document.getElementById("music").play().catch(()=>{});
             createHearts();
         },2000);
     } else {
