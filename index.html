@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Love Gift 💖</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    text-align:center;
+    background: linear-gradient(to bottom,#ff4e50,#ff9a9e);
+    color:white;
+}
+.page{
+    display:none;
+    padding:40px 20px;
+}
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:white;
+    color:#ff4e50;
+    font-weight:bold;
+    margin-top:20px;
+}
+input{
+    padding:12px;
+    width:80%;
+    max-width:300px;
+    border:none;
+    border-radius:8px;
+}
+.heart{
+    position:fixed;
+    animation: float 6s linear infinite;
+}
+@keyframes float{
+    0%{transform: translateY(100vh);}
+    100%{transform: translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1" style="display:block;">
+    <h1>💌 Someone Sent You A Gift 💌</h1>
+    <p>Click below to continue</p>
+    <button onclick="nextPage(2)">Open Gift 🎁</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h2>🔐 Enter Our Special Date</h2>
+    <input type="password" id="code" placeholder="DDMMYYYY">
+    <br>
+    <button onclick="checkCode()">Unlock ❤️</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <h2>💕 Generating Your Surprise...</h2>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+    <h1>💖 Happy Valentine's Day Dikuuu 💖</h1>
+    <p>You are my everything. I love you forever ❤️</p>
+    <img src="https://images.pexels.com/photos/1028723/pexels-photo-1028723.jpeg" width="80%" style="border-radius:15px;">
+</div>
+
+<script>
+
+const secret = "2011";
+
+function nextPage(pageNumber){
+    document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+    document.getElementById("page"+pageNumber).style.display="block";
+}
+
+function checkCode(){
+    const val = document.getElementById("code").value;
+    if(val === secret){
+        nextPage(3);
+        setTimeout(()=>{
+            nextPage(4);
+            createHearts();
+        },2000);
+    } else {
+        alert("Wrong date 💔 Try again!");
+    }
+}
+
+function createHearts(){
+    setInterval(()=>{
+        const heart = document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="❤️";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(20+Math.random()*30)+"px";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),6000);
+    },300);
+}
+
+</script>
+
+</body>
+</html>
