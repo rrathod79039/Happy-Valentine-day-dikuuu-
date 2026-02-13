@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Special Love Gift 💖</title>
 
 <style>
 body{
     margin:0;
-    font-family:Arial;
+    font-family:Arial, sans-serif;
     text-align:center;
     background: linear-gradient(to bottom,#ff4e50,#ff9a9e);
     color:white;
+    overflow-x:hidden;
 }
 .page{
     display:none;
@@ -24,6 +26,7 @@ button{
     color:#ff4e50;
     font-weight:bold;
     margin-top:20px;
+    cursor:pointer;
 }
 input{
     padding:12px;
@@ -40,6 +43,18 @@ input{
     0%{transform: translateY(100vh);}
     100%{transform: translateY(-10vh);}
 }
+.love-text{
+    max-width:600px;
+    margin:auto;
+    font-size:18px;
+    line-height:1.6;
+}
+img{
+    width:80%;
+    max-width:300px;
+    border-radius:15px;
+    margin-top:20px;
+}
 </style>
 </head>
 
@@ -47,7 +62,7 @@ input{
 
 <!-- PAGE 1 -->
 <div class="page" id="page1" style="display:block;">
-    <h1>💌 Someone Sent You A Gift 💌</h1>
+    <h1>💌 Someone Sent You A Special Gift 💌</h1>
     <p>Click below to continue</p>
     <button onclick="nextPage(2)">Open Gift 🎁</button>
 </div>
@@ -55,9 +70,9 @@ input{
 <!-- PAGE 2 -->
 <div class="page" id="page2">
     <h2>🔐 Enter Our Special Date</h2>
-    <input type="password" id="code" placeholder="DDMMYYYY">
+    <input type="password" id="code" placeholder="U celebrate my bday">
     <br>
-    <button onclick="checkCode()">Unlock ❤️</button>
+    <button onclick="checkCode()">Unlock My Heart ❤️</button>
 </div>
 
 <!-- PAGE 3 -->
@@ -67,16 +82,31 @@ input{
 
 <!-- PAGE 4 -->
 <div class="page" id="page4">
-    <h1>💖 Happy Valentine's Day Dikuuu 💖</h1>
-    <p>Happy Valentine’s Day, my love. Every day with you feels like a beautiful dream come true. You are my heart, my happiness, and my forever. I’m so lucky to call you mine. 💖</p>
+    <h1>💖 Happy Valentine’s Day 💖</h1>
 
-    <p>On this Valentine’s Day, I just want you to know that you are the best thing that has ever happened to me. Your smile lights up my world, and your love completes my soul. I promise to love you more with each passing day. 🌹</p>
-    <img src="https://images.pexels.com/photos/1028723/pexels-photo-1028723.jpeg" width="80%" style="border-radius:15px;">
+    <div class="love-text">
+        <p>
+        Happy Valentine’s Day, my love. Every day with you feels like a beautiful dream come true. 
+        You are my heart, my happiness, and my forever. I’m so lucky to call you mine. 💖
+        </p>
+
+        <p>
+        On this Valentine’s Day, I just want you to know that you are the best thing that has ever happened to me. 
+        Your smile lights up my world, and your love completes my soul. 
+        I promise to love you more with each passing day. 🌹
+        </p>
+    </div>
+
+    <img src="https://images.pexels.com/photos/1028723/pexels-photo-1028723.jpeg">
 </div>
+
+<audio id="music" loop>
+    <source src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav" type="audio/wav">
+</audio>
 
 <script>
 
-const secret = "2011";
+const secret = "2011"; // CHANGE THIS TO YOUR SPECIAL DATE
 
 function nextPage(pageNumber){
     document.querySelectorAll(".page").forEach(p=>p.style.display="none");
@@ -89,6 +119,7 @@ function checkCode(){
         nextPage(3);
         setTimeout(()=>{
             nextPage(4);
+            document.getElementById("music").play();
             createHearts();
         },2000);
     } else {
